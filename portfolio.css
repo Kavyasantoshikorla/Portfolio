@@ -1,4 +1,4 @@
-       * {
+* {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -110,16 +110,16 @@
             display: none;
             flex-direction: column;
             justify-content: space-around;
-            width: 2rem;
-            height: 2rem;
+            width: 1.5rem;
+            height: 1.5rem;
             background: transparent;
             border: none;
             cursor: pointer;
             z-index: 1002;
         }
         .hamburger .line {
-            width: 2rem;
-            height: 0.25rem;
+            width: 1.5rem;
+            height: 0.2rem;
             background: #e0e0e0;
             border-radius: 10px;
             transition: all 0.3s linear;
@@ -180,7 +180,7 @@
             color: #9ACD32;
         }
 
-        /* --- HOME SECTION: UPDATED STYLES --- */
+        /* --- HOME SECTION --- */
         #home {
             display: flex;
             align-items: center;
@@ -192,12 +192,6 @@
             flex: 1;
             text-align: left;
             animation: fadeInUp 1s ease-out;
-        }
-
-        .home-content .intro-text {
-            color: #9ACD32;
-            font-weight: bold;
-            margin-bottom: 1rem;
         }
 
         .home-content h1 {
@@ -292,7 +286,6 @@
             border-radius: inherit;
         }
 
-        /* Decorative floating shapes */
         .shape {
             position: absolute;
             color: #9ACD32;
@@ -308,7 +301,6 @@
             50% { transform: translateY(-20px); }
         }
 
-        /* Vertical social bar */
         .social-vertical {
             position: fixed;
             right: 20px;
@@ -353,7 +345,7 @@
             border-color: rgba(154, 205, 50, 0.4);
         }
 
-        /* --- ABOUT ME SECTION STYLES --- */
+        /* --- ABOUT ME SECTION --- */
         .about-content {
             display: flex;
             gap: 3rem;
@@ -361,7 +353,7 @@
         }
 
         .about-text {
-            flex: 2; /* Gives more space to the text content */
+            flex: 2;
         }
 
         .about-details {
@@ -414,7 +406,7 @@
             transform: scale(1.1);
         }
         
-        /* --- PROJECT SECTION STYLES --- */
+        /* --- PROJECT SECTION --- */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -638,9 +630,14 @@
         .contact-item .icon {
             color: #9ACD32;
             font-size: 1.5rem;
+            flex-shrink: 0; /* Prevents icon from shrinking */
         }
         .contact-item p {
             margin: 0;
+            word-break: break-word; /* Fix: Prevents overflow */
+        }
+        .contact-item div:last-child {
+            min-width: 0; /* Fix: Helps flexbox handle overflow */
         }
         .contact-item span {
             display: block;
@@ -696,10 +693,20 @@
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
         
-        /* Responsive Design */
+        /* --- RESPONSIVE DESIGN --- */
+        
+        /* Tablets and larger phones */
         @media (max-width: 992px) {
             .nav-links { display: none; }
             .hamburger { display: flex; }
+            
+            section {
+                padding-top: 5rem;
+            }
+
+            .section-header h2 { font-size: 2.2rem; }
+            .home-content h1 { font-size: 3rem; }
+            .home-content h2 { font-size: 1.5rem; }
 
             #home {
                 flex-direction: column;
@@ -708,18 +715,20 @@
                 padding-top: 8rem;
             }
             .home-content {
+                order: 2; /* Text appears below image */
                 text-align: center;
+            }
+            .home-image {
+                order: 1;
+                margin-top: 0;
+                margin-bottom: 2rem;
             }
             .home-content .description {
                 margin-left: auto;
                 margin-right: auto;
             }
             .home-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            .home-image {
-                margin-top: 3rem;
+                justify-content: center;
             }
             .image-frame {
                 width: 280px;
@@ -736,13 +745,73 @@
             .social-vertical {
                 display: none;
             }
-             .projects-grid, .education-grid {
-                grid-template-columns: 1fr;
-            }
         }
         
         @media (min-width: 768px) and (max-width: 992px) {
             .projects-grid, .education-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            .home-buttons {
+                flex-direction: row;
+            }
+        }
+        @media (max-width: 768px) {
+            .projects-grid, .education-grid, .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .home-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .about-content h3, .project-content h3, .contact-info h3, .contact-form h3 {
+                font-size: 1.4rem;
+            }
+            .skill-category h3, .education-header h3 {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Small mobile phones */
+        @media (max-width: 480px) {
+            section {
+                padding: 4rem 1rem 2rem;
+            }
+            .nav-container {
+                padding: 1rem 1.5rem;
+            }
+            .logo {
+                font-size: 1.3rem;
+            }
+            .home-content h1 {
+                font-size: 2.5rem;
+            }
+            .home-content h2 {
+                font-size: 1.3rem;
+            }
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            .about-content h3, .project-content h3, .contact-info h3, .contact-form h3 {
+                font-size: 1.3rem;
+            }
+            .skill-category h3, .education-header h3 {
+                font-size: 1.1rem;
+            }
+            .image-frame {
+                width: 240px;
+                height: 340px;
+            }
+            .glass-card {
+                padding: 1.5rem;
+            }
+            #contact .glass-card {
+                padding: 2rem 1.5rem;
+            }
+            .btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
             }
         }
